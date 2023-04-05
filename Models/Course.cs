@@ -12,7 +12,6 @@ namespace E_Learning_Platform.Models
         public float Price { get; set; }
         public string Image { get; set; }
         public int StudentId { get; set; }
-        public int LessonId { get; set; }
         public virtual Student Student { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
 

@@ -9,7 +9,6 @@ namespace E_Learning_Platform.Models
         public DateTime Date { get; set; }
         public int Amount { get; set; }
         public bool Status { get; set; }
-        public int CourseId { get; set; }
         public int StudentId { get; set; }
         public virtual List<Course>? Courses { get; set; }
         public virtual Student? Student { get; set; }
