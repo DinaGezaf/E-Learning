@@ -7,8 +7,7 @@ namespace E_Learning.Controllers.Login
     {
         public IActionResult Index()
         {
-            App_User newUSer = new App_User();
-            return View(newUSer);
+            return View();
         }
     }
 }

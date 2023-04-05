@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace E_Learning.Controllers.Register
+namespace E_Learning.Controllers.About
 {
-    public class RegisterController : Controller
+    public class AboutController : Controller
     {
         public IActionResult Index()
         {
