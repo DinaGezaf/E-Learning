@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using E_Learning.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Learning_Platform.Models
 {
-    public class E_LearningContext:DbContext
+    public class E_LearningContext:IdentityDbContext<App_user>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -10,7 +12,7 @@ namespace E_Learning_Platform.Models
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<App_User> Users { get; set; }
+       // public DbSet<App_User> Users { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
@@ -18,8 +20,9 @@ namespace E_Learning_Platform.Models
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
-        public DbSet<Certificate> Certificates { get; set; }
 
+
+        
 
     }
 }
