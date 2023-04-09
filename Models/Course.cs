@@ -12,8 +12,10 @@ namespace E_Learning_Platform.Models
         public float Rating { get; set; }
         public float Price { get; set; }
         public string Image { get; set; }
-        public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
+
+        public string certificate_Title { get; set; }
+        public DateTime certificate_Date { get; set; }
+        public virtual List<Student> Students { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
 
     }

@@ -24,6 +24,10 @@
             $('.sticky-top').css('top', '-100px');
         }
     });
+
+    //
+
+    
     
     
     // Dropdown on mouse hover
@@ -106,4 +110,15 @@
     });
     
 })(jQuery);
+
+
+$(function () {
+    $("li").click(function () {
+        alert(this);
+        // remove classes from all
+        $("li").removeClass("active");
+        // add class to the one we clicked
+        $(this).addClass("active");
+    });
+});
 

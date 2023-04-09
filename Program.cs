@@ -1,3 +1,9 @@
+using E_Learning.Models;
+using E_Learning_Platform.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+
 namespace E_Learning
 {
     public class Program
@@ -8,6 +14,9 @@ namespace E_Learning
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<E_LearningContext>();
+
+            builder.Services.AddIdentity<App_user, IdentityRole>().AddEntityFrameworkStores<E_LearningContext>();  // identity authentication
 
             var app = builder.Build();
 
