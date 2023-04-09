@@ -8,5 +8,9 @@ namespace E_Learning.Controllers.Contact
         {
             return View();
         }
+        public IActionResult CourseDetails()
+        {
+            return View();
+        }
     }
 }
