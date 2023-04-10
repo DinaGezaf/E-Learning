@@ -1,5 +1,6 @@
 ﻿using E_Learning.Interface;
 using E_Learning.Models;
+using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 

@@ -5,7 +5,7 @@ namespace E_Learning.Controllers.About
 {
     public class AboutController : Controller
     {
-        [Authorize(Roles ="Instructor")] 
+        [Authorize]
         public IActionResult Index()
         {
             return View();

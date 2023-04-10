@@ -54,7 +54,7 @@
                     <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Home</a>
                 </li>
                 <li>
-                    @if (User.IsInRole("Instructor"))
+                    @if (User.IsInRole("Admin"))
                     {
                         <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
 

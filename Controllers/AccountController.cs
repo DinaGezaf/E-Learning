@@ -1,4 +1,6 @@
-﻿using E_Learning.Models;
+﻿using E_Learning.Interface;
+using E_Learning.Models;
+using E_Learning.Repository;
 using E_Learning.viewmodel;
 using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Identity;
@@ -13,11 +15,13 @@ namespace E_Learning.Controllers
     {
         private readonly UserManager<App_user> userManager;
         private readonly SignInManager<App_user> signInManager;
+        IGenericRepository<Student> studentRepository;
 
-        public AccountController(UserManager<App_user> userManager ,SignInManager<App_user> signInManager)
+        public AccountController(UserManager<App_user> userManager ,SignInManager<App_user> signInManager, IGenericRepository<Student> studentRepo)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            studentRepository = studentRepo;
         }
         public IActionResult Index()
         {
@@ -51,7 +55,11 @@ namespace E_Learning.Controllers
                 {
                     await userManager.AddToRoleAsync(applicationuser,"Student");
                     await signInManager.SignInAsync(applicationuser, false);
+                    Student newStudent = new Student();
+                    newStudent.User_id = applicationuser.Id;
+                    studentRepository.Insert(newStudent);
                     return RedirectToAction("Index", "Courses"); 
+                    
 
 
                 }

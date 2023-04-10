@@ -1,14 +1,15 @@
 ﻿using E_Learning.Interface;
 using E_Learning.Models;
+using E_Learning_Platform.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Learning.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T:class
     {
-        ELearningContext context;
+       E_LearningContext context;
         private DbSet<T> table;
-        public GenericRepository(ELearningContext _context)
+        public GenericRepository(E_LearningContext _context)
         {
             context= _context;
             table = context.Set<T>();

@@ -5,7 +5,6 @@ namespace E_Learning.Controllers.Contact
 {
     public class CoursesController : Controller
     {
-        [Authorize(Roles = "Student")]
 
         public IActionResult Index()
         {
