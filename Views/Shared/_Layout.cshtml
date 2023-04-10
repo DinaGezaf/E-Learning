@@ -53,7 +53,14 @@
                 <li>
                     <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Home</a>
                 </li>
+<<<<<<< HEAD
                     <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
+=======
+                <li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
+>>>>>>> fb023d4d11801bd8cce5e3a3cdb821640cbb913c
 
                     <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
                 @if (User.IsInRole("Admin"))

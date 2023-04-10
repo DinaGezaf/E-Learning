@@ -21,8 +21,15 @@ namespace E_Learning_Platform.Models
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
 
+        public DbSet<CourseStudent> CourseStudent { get; set; }
 
-        
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<CourseStudent>().HasKey(cs => new { cs.CourseId, cs.StudentId });
+        }
+
+
 
     }
 }

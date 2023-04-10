@@ -1,4 +1,6 @@
-﻿using E_Learning.Models;
+﻿using E_Learning.Interface;
+using E_Learning.Models;
+using E_Learning.Repository;
 using E_Learning.viewmodel;
 using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Identity;
@@ -13,11 +15,13 @@ namespace E_Learning.Controllers
     {
         private readonly UserManager<App_user> userManager;
         private readonly SignInManager<App_user> signInManager;
+        IGenericRepository<Student> studentRepository;
 
-        public AccountController(UserManager<App_user> userManager ,SignInManager<App_user> signInManager)
+        public AccountController(UserManager<App_user> userManager ,SignInManager<App_user> signInManager, IGenericRepository<Student> studentRepo)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            studentRepository = studentRepo;
         }
         public IActionResult Index()
         {
@@ -51,7 +55,13 @@ namespace E_Learning.Controllers
                 {
                     await userManager.AddToRoleAsync(applicationuser,"Admin");
                     await signInManager.SignInAsync(applicationuser, false);
-                    return RedirectToAction("Index","Courses");
+                    Student newStudent = new Student();
+                    newStudent.User_id = applicationuser.Id;
+                    studentRepository.Insert(newStudent);
+                    return RedirectToAction("Index", "Courses"); 
+                    
+
+
                 }
                 else
                 {
@@ -66,49 +76,49 @@ namespace E_Learning.Controllers
 
         }
 
-        //instructor
-        public IActionResult InstructorRegister()
-        {
+        ////instructor
+        //public IActionResult InstructorRegister()
+        //{
 
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> InstructorRegister(RegisterViewModel registerViewModel)
-
-        {
-            if (ModelState.IsValid)
-            {
-
-                App_user applicationuser = new App_user();
-                applicationuser.UserName = registerViewModel.UserName;
-                applicationuser.PasswordHash = registerViewModel.Password;
-                applicationuser.Email = registerViewModel.Email;
+        //    return View();
+        //}
 
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> InstructorRegister(RegisterViewModel registerViewModel)
 
-                IdentityResult result = await userManager.CreateAsync(applicationuser, registerViewModel.Password);
-                //IdentityResult result = await userManager.CreateAsync(applicationuser);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(applicationuser, "Instructor");
-                    await signInManager.SignInAsync(applicationuser, false);
-                    return RedirectToAction("Index", "About");
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
-                    { ModelState.AddModelError("", item.Description); }
+        //        App_user applicationuser = new App_user();
+        //        applicationuser.UserName = registerViewModel.UserName;
+        //        applicationuser.PasswordHash = registerViewModel.Password;
+        //        applicationuser.Email = registerViewModel.Email;
 
-                }
 
-            }
-            return View(registerViewModel);
 
-        }
+        //        IdentityResult result = await userManager.CreateAsync(applicationuser, registerViewModel.Password);
+        //        //IdentityResult result = await userManager.CreateAsync(applicationuser);
+        //        if (result.Succeeded)
+        //        {
+        //            await userManager.AddToRoleAsync(applicationuser, "Instructor");
+        //            await signInManager.SignInAsync(applicationuser, false);
+        //            return RedirectToAction("Index", "About");
+        //        }
+        //        else
+        //        {
+        //            foreach (var item in result.Errors)
+
+        //            { ModelState.AddModelError("", item.Description); }
+
+        //        }
+
+        //    }
+        //    return View(registerViewModel);
+
+        //}
 
 
 
