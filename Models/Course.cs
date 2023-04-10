@@ -15,7 +15,6 @@ namespace E_Learning_Platform.Models
 
         public string certificate_Title { get; set; }
         public DateTime certificate_Date { get; set; }
-        public virtual List<Student> Students { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
 
     }

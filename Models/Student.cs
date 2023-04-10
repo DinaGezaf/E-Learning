@@ -13,7 +13,6 @@
 
 
         
-        public virtual List<Course>? Courses { get; set; }
         public virtual List<Payment>? Payments { get; set; }
         public virtual List<Enrollment>? Enrollments { get; set; }
 
