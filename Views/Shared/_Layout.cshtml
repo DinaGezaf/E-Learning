@@ -53,41 +53,31 @@
                 <li>
                     <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Home</a>
                 </li>
-                <li>
-                    @if (User.IsInRole("Instructor"))
-                    {
-                        <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
+                    <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
 
-
-                    }
-                </li>
-               
-                @if ( User.IsInRole("Student"))
-                {
-                    <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
-
-                }
-                <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
-                @if (User.Identity.IsAuthenticated == false)
-                {
-                         
-                     <div>
-                  <a asp-action="Login" asp-controller="Account"  class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-                    </div>
-                }
-                else
-                {
-                    <a asp-action="Logout" asp-controller="Account" class="nav-item nav-link">Logout</a>
-                    <a href="#" class="nav-item nav-link" style="color:lightskyblue"> welcome, @User.Identity.Name</a>
-
-                    
-                }
+                    <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
                 @if (User.IsInRole("Admin"))
                 {
                     <a asp-action="New" asp-controller="Role" class="nav-item nav-link">Role</a>
-
+                }
+                @if (User.IsInRole("Student"))
+                {
+                    <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
+                }
+                @if (User.Identity.IsAuthenticated == false)
+                {
+                    
+                   <a asp-action="Login" asp-controller="Account"  class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
                     
                 }
+                else
+                {
+                    <a asp-action="Index" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    <a asp-action="Logout" asp-controller="Account" class="nav-item nav-link">Logout</a>
+                }
+
+                
+                
            
     </nav>
     <!-- Navbar End -->

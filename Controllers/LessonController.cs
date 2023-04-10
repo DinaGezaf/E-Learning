@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_Learning.Controllers.Contact
+namespace E_Learning.Controllers
 {
-    public class CoursesController : Controller
+    [Authorize]
+    public class LessonController : Controller
     {
-        [Authorize(Roles = "Student")]
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult CourseDetails()
+        public IActionResult ShowLesson()
         {
             return View();
         }

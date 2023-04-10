@@ -6,11 +6,8 @@ namespace E_Learning.Controllers.Contact
 {
     public class ContactController : Controller
     {
-        [Authorize]
         public IActionResult Index()
-        {
-            
-           
+        {  
             return View();
         }
     }
