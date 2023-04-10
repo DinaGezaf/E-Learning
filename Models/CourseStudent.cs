@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using E_Learning_Platform.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
