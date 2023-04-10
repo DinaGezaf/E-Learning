@@ -11,6 +11,7 @@
         public int PaymentHistory { get; set; }
         public int CourseHistory { get; set; }
 
+
         
         public virtual List<Course>? Courses { get; set; }
         public virtual List<Payment>? Payments { get; set; }
