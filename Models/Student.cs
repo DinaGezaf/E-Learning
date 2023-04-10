@@ -7,7 +7,7 @@ namespace E_Learning_Platform.Models
     {
         public int Id { get; set; }
         
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? Profile_Picture { get; set; }
         public int EnrollmentHistory { get; set; }
@@ -16,7 +16,7 @@ namespace E_Learning_Platform.Models
 
         [ForeignKey("App_User")]
         public int User_id { get; set; }
-        public virtual App_user App_User { get; set; }
+        public virtual App_user? App_User { get; set; }
         
         public virtual List<Payment>? Payments { get; set; }
         public virtual List<Enrollment>? Enrollments { get; set; }
