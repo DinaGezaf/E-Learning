@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using E_Learning.Interface;
+using E_Learning.Repository;
+using E_Learning_Platform.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Learning.Controllers
@@ -6,13 +9,17 @@ namespace E_Learning.Controllers
     [Authorize]
     public class LessonController : Controller
     {
-        public IActionResult Index()
+        ILessonRepository lessonRepository;
+        public LessonController(IGenericRepository<Course> courseRepo,
+            ILessonRepository _lessonRepository)
         {
-            return View();
+            lessonRepository = _lessonRepository;
+
         }
-        public IActionResult ShowLesson()
+        public IActionResult ShowLesson([FromRoute] int id)
         {
-            return View();
+            var lesson = lessonRepository.GetById(id);
+            return View(lesson);
         }
     }
 }

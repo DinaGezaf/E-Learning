@@ -53,24 +53,15 @@
                 <li>
                     <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Home</a>
                 </li>
-<<<<<<< HEAD
                     <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
-=======
-                <li>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
->>>>>>> fb023d4d11801bd8cce5e3a3cdb821640cbb913c
-
+                
                     <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
                 @if (User.IsInRole("Admin"))
                 {
                     <a asp-action="New" asp-controller="Role" class="nav-item nav-link">Role</a>
                 }
-                @if (User.IsInRole("Student"))
-                {
-                    <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
-                }
+                <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
+                
                 @if (User.Identity.IsAuthenticated == false)
                 {
                     
@@ -79,7 +70,7 @@
                 }
                 else
                 {
-                    <a asp-action="Index" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
                     <a asp-action="Logout" asp-controller="Account" class="nav-item nav-link">Logout</a>
                 }
 

@@ -22,7 +22,7 @@ namespace E_Learning.Repository
 
     public List<StudentCourseViewModel> GetByStudentId(int studentId)
     {
-          var courses = context.CourseStudent.Include(cs=>cs.Course).Where(cs => cs.StudentId == studentId).ToList();
+        var courses = context.CourseStudent.Include(cs=>cs.Course).Where(cs => cs.StudentId == studentId).ToList();
         List<StudentCourseViewModel> studentCoursesVM = new List<StudentCourseViewModel>();
         foreach (var course in courses)
         {
@@ -46,5 +46,5 @@ namespace E_Learning.Repository
         context.SaveChanges();
     }
 
-}
+   }
 }

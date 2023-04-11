@@ -59,8 +59,6 @@ namespace E_Learning.Controllers
                     newStudent.User_id = applicationuser.Id;
                     studentRepository.Insert(newStudent);
                     return RedirectToAction("Index", "Courses"); 
-                    
-
 
                 }
                 else
