@@ -44,7 +44,7 @@ namespace E_Learning.Controllers
 
                 App_user applicationuser = new App_user();
                 applicationuser.UserName = registerViewModel.UserName;
-             applicationuser.PasswordHash= registerViewModel.Password;
+                applicationuser.PasswordHash= registerViewModel.Password;
                 applicationuser.Email = registerViewModel.Email;
 
 
@@ -53,14 +53,12 @@ namespace E_Learning.Controllers
                 //IdentityResult result = await userManager.CreateAsync(applicationuser);
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(applicationuser,"Student");
+                    await userManager.AddToRoleAsync(applicationuser,"Admin");
                     await signInManager.SignInAsync(applicationuser, false);
                     Student newStudent = new Student();
                     newStudent.User_id = applicationuser.Id;
                     studentRepository.Insert(newStudent);
                     return RedirectToAction("Index", "Courses"); 
-                    
-
 
                 }
                 else

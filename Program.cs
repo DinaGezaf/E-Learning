@@ -26,7 +26,9 @@ namespace E_Learning
             builder.Services.AddScoped<IGenericRepository<CourseStudent>, GenericRepository<CourseStudent>>();
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<ICourseStudentRepository, CourseStudentRepository>();
-
+            builder.Services.AddScoped<ILessonRepository, LessonRepository>();
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             //Stripe
             builder.Services.Configure<StripeViewModel>(builder.Configuration.GetSection("Stripe"));
             StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["Secretkey"]);

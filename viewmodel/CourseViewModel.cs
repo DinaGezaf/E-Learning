@@ -1,9 +1,8 @@
 ﻿using E_Learning_Platform.Models;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace E_Learning_Platform.Models
+namespace E_Learning.viewmodel
 {
-    public class Course
+    public class CourseViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,15 +12,9 @@ namespace E_Learning_Platform.Models
         public float Rating { get; set; }
         public float Price { get; set; }
         public string Image { get; set; }
-        [ForeignKey("Enrollment")]
-        public int EnrollmentId { get; set; }
-        [ForeignKey("Payment")]
-        public int PaymentId { get; set; }
-
         public string certificate_Title { get; set; }
         public DateTime certificate_Date { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
-        public virtual List<Feedback> Feedbacks { get; set; }
-
+        public virtual List<Feedback>? Feedbacks { get; set; }
     }
 }

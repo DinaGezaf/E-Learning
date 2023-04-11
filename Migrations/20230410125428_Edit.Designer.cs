@@ -4,6 +4,7 @@ using E_Learning_Platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.Migrations
 {
     [DbContext(typeof(E_LearningContext))]
-    partial class E_LearningContextModelSnapshot : ModelSnapshot
+    [Migration("20230410125428_Edit")]
+    partial class Edit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +127,7 @@ namespace E_Learning.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("EnrollmentId")
+                    b.Property<int?>("EnrollmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -135,7 +138,7 @@ namespace E_Learning.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<float>("Price")
@@ -523,15 +526,11 @@ namespace E_Learning.Migrations
                 {
                     b.HasOne("E_Learning_Platform.Models.Enrollment", null)
                         .WithMany("Courses")
-                        .HasForeignKey("EnrollmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EnrollmentId");
 
                     b.HasOne("E_Learning_Platform.Models.Payment", null)
                         .WithMany("Courses")
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaymentId");
                 });
 
             modelBuilder.Entity("E_Learning_Platform.Models.Enrollment", b =>
@@ -548,7 +547,7 @@ namespace E_Learning.Migrations
             modelBuilder.Entity("E_Learning_Platform.Models.Feedback", b =>
                 {
                     b.HasOne("E_Learning_Platform.Models.Course", "Course")
-                        .WithMany("Feedbacks")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -681,8 +680,6 @@ namespace E_Learning.Migrations
 
             modelBuilder.Entity("E_Learning_Platform.Models.Course", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Lessons");
                 });
 

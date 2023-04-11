@@ -20,7 +20,7 @@ namespace E_Learning.Controllers
         {
             Claim claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             int stdId = studentRepository.GetByUserId(claim.Value).Id;
-             var studentCourses = courseStudentRepository.GetByStudentId(stdId);
+            var studentCourses = courseStudentRepository.GetByStudentId(stdId);
             return View("Index2",studentCourses);
         }
         public IActionResult Add(int courseId)

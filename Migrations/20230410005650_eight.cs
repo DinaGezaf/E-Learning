@@ -18,22 +18,6 @@ namespace E_Learning.Migrations
                 name: "FK_CourseStudent_Students_StudentsId",
                 table: "CourseStudent");
 
-            migrationBuilder.DropColumn(
-                name: "Email",
-                table: "Students");
-
-            migrationBuilder.DropColumn(
-                name: "Name",
-                table: "Students");
-
-            migrationBuilder.DropColumn(
-                name: "Password",
-                table: "Students");
-
-            migrationBuilder.DropColumn(
-                name: "certificate_Id",
-                table: "Courses");
-
             migrationBuilder.RenameColumn(
                 name: "StudentsId",
                 table: "CourseStudent",

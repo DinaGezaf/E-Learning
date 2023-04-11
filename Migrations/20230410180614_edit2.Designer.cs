@@ -4,6 +4,7 @@ using E_Learning_Platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.Migrations
 {
     [DbContext(typeof(E_LearningContext))]
-    partial class E_LearningContextModelSnapshot : ModelSnapshot
+    [Migration("20230410180614_edit2")]
+    partial class edit2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -548,7 +551,7 @@ namespace E_Learning.Migrations
             modelBuilder.Entity("E_Learning_Platform.Models.Feedback", b =>
                 {
                     b.HasOne("E_Learning_Platform.Models.Course", "Course")
-                        .WithMany("Feedbacks")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -681,8 +684,6 @@ namespace E_Learning.Migrations
 
             modelBuilder.Entity("E_Learning_Platform.Models.Course", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Lessons");
                 });
 
