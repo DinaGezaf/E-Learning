@@ -15,7 +15,7 @@ namespace E_Learning_Platform.Models
         public int CourseHistory { get; set; }
 
         [ForeignKey("App_User")]
-        public int User_id { get; set; }
+        public string? User_id { get; set; }
         public virtual App_user? App_User { get; set; }
         
         public virtual List<Payment>? Payments { get; set; }
