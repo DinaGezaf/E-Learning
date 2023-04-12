@@ -32,5 +32,22 @@ namespace E_Learning.Controllers
             var student=studentRepository.GetCrsByStudentId(userId);
             return View(student);
         }
+        [HttpGet]
+        public IActionResult EditPartial(int id)
+        {
+            var student = studentRepository.GetById(id);
+            return PartialView(student);
+        }
+        [HttpPost]
+        public IActionResult EditPartial([FromRoute] int id, Student student)
+        {
+            if (student.Bio != null)
+            {
+                studentRepository.UpdateStudent(id,student);
+                return RedirectToAction("Profile");
+            }
+
+            return PartialView(student);
+        }
     }
 }
