@@ -31,6 +31,13 @@ namespace E_Learning.Controllers
             CourseStudent crsStd = new CourseStudent();
             crsStd.StudentId = stdId;
             crsStd.CourseId = courseId;
+
+            var isPaid = courseStudentRepository.IsPaid(stdId, courseId);
+            if (isPaid)
+            {
+                TempData["ErrorMessage"] = "You have already enrolled in this course";
+                return RedirectToAction("Profile", "Student");
+            }
             courseStudentRepository.Insert(crsStd);
             return RedirectToAction("Index");  
         }

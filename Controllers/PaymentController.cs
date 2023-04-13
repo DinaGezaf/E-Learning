@@ -43,7 +43,7 @@ namespace E_Learning.Controllers
             Claim claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             int stdId = studentRepository.GetByUserId(claim.Value).Id;
             courseStudentRepository.UpdateIsPaid(stdId);
-            return View("Index", "Home");
+            return RedirectToAction("Profile", "Student");
         }
     }
 }

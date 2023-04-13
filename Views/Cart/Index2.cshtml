@@ -9,9 +9,10 @@
 @{
     long balance=0;
 }
-<h1 class="py-4">Shopping Cart</h1>
+
 
 <div class="container">
+    <h1 class="py-4">Shopping Cart</h1>
     <div class="row">
         <table class="table" style="width:1100px">
             @foreach (var course in Model)
@@ -20,7 +21,7 @@
                 <tr class=" border-top">
                     @*<td><img style="width:120px;height:70px" src="@course.Image" /></td>*@
                     <td class="py-3" style="width:150px">
-                        <img style="width:120px;height:70px" src="https://img-b.udemycdn.com/course/240x135/5122400_a84d_3.jpg" />
+                        <img style="width:120px;height:70px" src="Images/Course/@course.Image" />
                     </td>
                     <td class="py-3 w-50">
                         <p class="fw-bold p-0 m-0"> @course.Title</p>

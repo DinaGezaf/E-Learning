@@ -58,7 +58,7 @@
                     <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
                 
                 
-                    <a asp-action="New" asp-controller="Role" class="nav-item nav-link">Role</a>
+                   
                 
                 <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
                 
@@ -72,10 +72,12 @@
                 {
                     @if (User.IsInRole("Student"))
                     {
+                        <a asp-action="Index" asp-controller="Cart" class="nav-item nav-link">Cart</a>
                         <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
 
                     }else
                     {
+                        <a asp-action="New" asp-controller="Role" class="nav-item nav-link">Role</a>
                         <a href="#" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
                     }
 

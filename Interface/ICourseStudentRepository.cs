@@ -9,5 +9,6 @@ namespace E_Learning.Interface
         public void Insert(CourseStudent crsStudent);
         public List<StudentCourseViewModel> GetByStudentId(int studentId);
         public void UpdateIsPaid(int stdId);
+        public bool IsPaid(int studentId, int courseId);
     }
 }

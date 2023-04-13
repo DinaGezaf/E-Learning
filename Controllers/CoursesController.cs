@@ -42,15 +42,19 @@ namespace E_Learning.Controllers
         [HttpPost]
         public IActionResult AddFeedback(FeedbackViewModel model)
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var student = studentRepository.GetCrsByStudentId(userId);
+
             var feedback = new Feedback();
             feedback.CourseId = model.CourseId;
-            feedback.StudentId = model.StudentId;
+            feedback.StudentId = student.Id;
             feedback.Comment = model.Comment;
             feedback.Rating = model.Rating;
             feedback.Date = DateTime.Now;
 
+            if ( ModelState.IsValid==true) 
+            {
                 feedbackRepository.Insert(feedback);
-
                 return RedirectToAction("Index", "Courses");
             }
             return View(model);

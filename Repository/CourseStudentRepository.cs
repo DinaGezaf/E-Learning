@@ -56,5 +56,10 @@ namespace E_Learning.Repository
             context.SaveChanges();
         }
 
+        public bool IsPaid(int studentId, int courseId)
+        {
+            return context.CourseStudent.Any(e => e.StudentId == studentId && e.CourseId == courseId);
+        }
+
     }
 }
