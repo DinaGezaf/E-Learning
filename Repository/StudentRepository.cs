@@ -63,6 +63,22 @@ namespace E_Learning.Repository
 
             return StudentVM;
         }
+        public List<UserStudentViewModel> GetAllIncludeUserData()
+        {
+            var students = context.Students.Include(u => u.App_User).ToList();
+            List<UserStudentViewModel> userStudents = new List<UserStudentViewModel>();
+            foreach (var stud in students)
+            {
+                userStudents.Add(new UserStudentViewModel
+                {
+                    UserName = stud.App_User.UserName,
+                    Email = stud.App_User.Email,
+                    Profile_Picture = stud.Profile_Picture
+                });
+            }
+            return userStudents;
 
+
+        }
     }
 }

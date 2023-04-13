@@ -10,5 +10,6 @@ namespace E_Learning.Interface
         Student GetByUserId(string id);
         public StudentProfileViewModel GetCrsByStudentId(string userId);
         public void UpdateStudent(int id, Student student);
+        public List<UserStudentViewModel> GetAllIncludeUserData();
     }
 }

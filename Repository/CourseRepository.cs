@@ -49,7 +49,7 @@ namespace E_Learning.Repository
                     Price = course.Price,
                     Category = course.Category,
                     Rating = course.Rating,
-                    certificate_Date = course.certificate_Date,
+                    certificate_Date = DateTime.Now,
                     certificate_Title = course.certificate_Title,
                     Duration = course.Duration,
                     Image = course.Image,
@@ -72,7 +72,7 @@ namespace E_Learning.Repository
             courseViewModel.Category = course.Category;
             courseViewModel.Price = course.Price;
             courseViewModel.Rating = course.Rating;
-            courseViewModel.certificate_Date = course.certificate_Date;
+            courseViewModel.certificate_Date = DateTime.Now;
             courseViewModel.certificate_Title = course.certificate_Title;
             courseViewModel.Duration = course.Duration;
             courseViewModel.Image = course.Image;
