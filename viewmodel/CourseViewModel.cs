@@ -16,5 +16,6 @@ namespace E_Learning.viewmodel
         public DateTime certificate_Date { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
         public virtual List<Feedback>? Feedbacks { get; set; }
+        public virtual List<Enrollment> Enrollments { get; set; }
     }
 }

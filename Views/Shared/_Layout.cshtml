@@ -70,10 +70,18 @@
                 }
                 else
                 {
-                    <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    @if (User.IsInRole("Student"))
+                    {
+                        <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+
+                    }else
+                    {
+                        <a href="#" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    }
+
                     <a asp-action="Logout" asp-controller="Account" class="nav-item nav-link">Logout</a>
                 }
-
+                
                 
                 
            

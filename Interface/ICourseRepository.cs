@@ -8,5 +8,8 @@ namespace E_Learning.Interface
     {
         public List<CourseViewModel> GetAll();
         public CourseViewModel GetById([FromRoute] int id);
+        public  bool AddEnrollment(Enrollment enrollment);
+        public  void AddEnrollment(EnrollmentViewModel enrollmentViewModel);
+       
     }
 }

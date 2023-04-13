@@ -4,6 +4,7 @@ using E_Learning_Platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.Migrations
 {
     [DbContext(typeof(E_LearningContext))]
-    partial class E_LearningContextModelSnapshot : ModelSnapshot
+    [Migration("20230413025403_UpdateModels")]
+    partial class UpdateModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,6 +204,9 @@ namespace E_Learning.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -210,6 +216,8 @@ namespace E_Learning.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("LessonId");
 
                     b.HasIndex("StudentId");
 
@@ -259,6 +267,9 @@ namespace E_Learning.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EnrollmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Method")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,6 +281,8 @@ namespace E_Learning.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnrollmentId");
 
                     b.HasIndex("StudentId");
 
@@ -287,8 +300,17 @@ namespace E_Learning.Migrations
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CourseHistory")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("EnrollmentHistory")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentHistory")
+                        .HasColumnType("int");
 
                     b.Property<string>("Profile_Picture")
                         .HasColumnType("nvarchar(max)");
@@ -492,6 +514,12 @@ namespace E_Learning.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("E_Learning_Platform.Models.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("E_Learning_Platform.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
@@ -499,6 +527,8 @@ namespace E_Learning.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+
+                    b.Navigation("Lesson");
 
                     b.Navigation("Student");
                 });
@@ -516,6 +546,10 @@ namespace E_Learning.Migrations
 
             modelBuilder.Entity("E_Learning_Platform.Models.Payment", b =>
                 {
+                    b.HasOne("E_Learning_Platform.Models.Enrollment", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("EnrollmentId");
+
                     b.HasOne("E_Learning_Platform.Models.Student", "Student")
                         .WithMany("Payments")
                         .HasForeignKey("StudentId")
@@ -594,6 +628,11 @@ namespace E_Learning.Migrations
                     b.Navigation("Feedbacks");
 
                     b.Navigation("Lessons");
+                });
+
+            modelBuilder.Entity("E_Learning_Platform.Models.Enrollment", b =>
+                {
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("E_Learning_Platform.Models.Payment", b =>

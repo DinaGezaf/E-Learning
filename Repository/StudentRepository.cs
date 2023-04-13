@@ -23,7 +23,8 @@ namespace E_Learning.Repository
          StudentProfileViewModel IStudentRepository.GetCrsByStudentId(string userId)
         {
             var std = context.Students.FirstOrDefault(s => s.User_id == userId);
-            var Enrollments = context.Enrollments.Where(cs => cs.StudentId == std.Id).ToList();
+            var Enrollments = context.Enrollments.Include(e => e.Course).Where(cs => cs.StudentId == std.Id).OrderByDescending(e => e.Date).ToList();
+          
 
             StudentProfileViewModel studentVM = new StudentProfileViewModel();
 
@@ -32,11 +33,9 @@ namespace E_Learning.Repository
             studentVM.DateOfBirth = std.DateOfBirth;
             studentVM.Id = std.Id;
 
-            foreach (var item in Enrollments)
-            {
-                studentVM.Enrolled_Courses = context.Courses.Where(cs => cs.EnrollmentId == item.Id).ToList();
-                studentVM.CrsEnrolled = studentVM.Enrolled_Courses.Count();
-            }
+            studentVM.Enrolled_Courses = Enrollments.Select(e => e.Course).ToList();
+            studentVM.CrsEnrolled = studentVM.Enrolled_Courses.Count();
+
             return studentVM;
         }
         public void UpdateStudent( int id,Student student )

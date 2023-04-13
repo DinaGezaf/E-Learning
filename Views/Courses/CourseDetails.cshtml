@@ -1,4 +1,5 @@
-﻿@model CourseViewModel
+﻿
+@model CourseViewModel
 <link rel="stylesheet" href="~/css/style/linearicons.css" />
 <link rel="stylesheet" href="~/css/style/magnific-popup.css" />
 <link rel="stylesheet" href="~/css/style/owl.carousel.css" />
@@ -106,12 +107,26 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#" class="btn text-uppercase enroll">Enroll the course</a>
+                <form method="post" asp-controller="Courses" asp-action="Enroll" >
+                    <input type="hidden" name="courseId" value="@Model.Id" />
+                    <button type="submit" class="btn text-uppercase enroll">Enroll the course</button>
+                </form>
 
                 <h4 class="title my-3">Reviews</h4>
                 <div class="content">
-                    <div class="feedeback">
-                        @Html.Partial("AddFeedback", new FeedbackViewModel { CourseId = @Model.Id })
+                    <div class="feedeback" id="add-feedback-form">
+
+                        <form asp-action="AddFeedback" asp-controller="Courses" method="post">
+                            <input type="hidden" name="courseId" value="@Model.Id" />
+                            <h6 class="mb-10">Your Feedback</h6>
+                            <div class="form-group">
+                                <label for="Comment" class="control-label"></label>
+                                <textarea name="Comment" class="form-control" cols="10" rows="10"></textarea>
+                            </div>
+                            <div class="mt-10 text-right">
+                                <button type="submit" class="btn text-center text-uppercase enroll">Submit</button>
+                            </div>
+                        </form>
 
                     </div>
                     
@@ -192,5 +207,26 @@
 <script src="~/js/vendor/waypoints.min.js"></script>
 <script src="~/js/vendor/main.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js">
-</script><script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @section Scripts
+        {
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#feedback-form').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddFeedback","Courses")", 
+                    data: formData,
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+    }

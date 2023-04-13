@@ -3,6 +3,7 @@ using E_Learning.viewmodel;
 using E_Learning.ViewModels;
 using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Stripe;
 
 namespace E_Learning.Repository
@@ -45,7 +46,7 @@ namespace E_Learning.Repository
             var Feedbacks = context.Feedbacks.Where(f=>f.CourseId == id).ToList();
 
             CourseViewModel courseViewModel = new CourseViewModel();
-
+            courseViewModel.Id = course.Id;
             courseViewModel.Name = course.Name;
             courseViewModel.Description = course.Description;
             courseViewModel.Category = course.Category;
@@ -60,6 +61,28 @@ namespace E_Learning.Repository
 
             return courseViewModel;
         }
-        
+       
+        public bool AddEnrollment(Enrollment enrollment)
+        {
+            context.Enrollments.Add(enrollment);
+            var result =  context.SaveChanges();
+            return result > 0;
+        }
+        public async void AddEnrollment(EnrollmentViewModel enrollmentViewModel)
+        {
+            var enrollment = new Enrollment
+            {
+                StudentId = enrollmentViewModel.StudentId,
+                CourseId = enrollmentViewModel.CourseId,
+                Date = DateTime.Now
+            };
+
+             context.Enrollments.Add(enrollment);
+             context.SaveChanges();
+        }
+       
+
+
+
     }
 }

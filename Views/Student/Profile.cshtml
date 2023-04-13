@@ -38,12 +38,13 @@
                         <p class="font-italic mb-1">@Model.Bio</p>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="lead fw-normal mb-0">Recent Courses</p>
-                </div>
-                @foreach (var item in Model.Enrolled_Courses)
-                    {
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="lead fw-normal mb-0">Recent Courses</p>
+                    </div>
+                    
                         <div class="row">
+                        @foreach (var item in Model.Enrolled_Courses)
+                        {
                             <div class="col-md-6 col-lg-4 my-1 text-center  pt-4">
                                 <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded mx-2 bg-light">
                                     <img src="~/Images/Course/@item.Image" class="card-img-top" alt="..." style="width: 21rem;height:20rem;">
@@ -54,9 +55,11 @@
                                     </div>
                                 </div>
                             </div>
+                            }
                         </div>
-                    }
-            </div>
+                   
+        </div>
+    </div>
         </div>
     </div>
 </div>
@@ -79,7 +82,6 @@
         <script src="/lib/jquery/dist/jquery.min.js"></script>
         <script>
             function GetData(StdId) {
-                console.log("StdId: " + StdId);
                 event.preventDefault();
                 $.ajax({
                     url: "@Url.Action("EditPartial","Student")",

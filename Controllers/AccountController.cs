@@ -53,7 +53,7 @@ namespace E_Learning.Controllers
                 //IdentityResult result = await userManager.CreateAsync(applicationuser);
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(applicationuser,"Student");
+                    await userManager.AddToRoleAsync(applicationuser, "Student");
                     await signInManager.SignInAsync(applicationuser, false);
                     Student newStudent = new Student();
                     newStudent.User_id = applicationuser.Id;

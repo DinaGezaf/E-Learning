@@ -10,6 +10,5 @@ namespace E_Learning_Platform.Models
         public int Lesson_Duration { get; set; }
         public int CourseId { get; set; }
         public virtual Course? Course { get; set; }
-        public virtual List<Quiz>? Quizzes { get; set; }
     }
 }
