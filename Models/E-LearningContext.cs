@@ -18,7 +18,6 @@ namespace E_Learning_Platform.Models
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<Quiz> Quizzes { get; set; }
 
         public DbSet<CourseStudent> CourseStudent { get; set; }
 

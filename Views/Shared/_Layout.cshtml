@@ -70,10 +70,18 @@
                 }
                 else
                 {
-                    <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    @if (User.IsInRole("Student"))
+                    {
+                        <a asp-action="Profile" asp-controller="Student" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+
+                    }else
+                    {
+                        <a href="#" class="nav-item nav-link text-primary"> welcome, @User.Identity.Name</a>
+                    }
+
                     <a asp-action="Logout" asp-controller="Account" class="nav-item nav-link">Logout</a>
                 }
-
+                
                 
                 
            
@@ -154,7 +162,9 @@
     <script src="~/js/JavaScript.js"></script>
     <script src="/js/main.js"></script>
 
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

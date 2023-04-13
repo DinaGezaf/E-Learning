@@ -13,10 +13,6 @@ namespace E_Learning_Platform.Models
         public DateTime DateOfBirth { get; set; }
         
         public string? Profile_Picture { get; set; }
-        public int EnrollmentHistory { get; set; }
-        public int PaymentHistory { get; set; }
-        public int CourseHistory { get; set; }
-
         [ForeignKey("App_User")]
         public string User_id { get; set; }
         public virtual App_user? App_User { get; set; }
