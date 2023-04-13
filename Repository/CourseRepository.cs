@@ -15,6 +15,26 @@ namespace E_Learning.Repository
         {
             context = _context;
         }
+
+        public bool AddEnrollment(Enrollment enrollment)
+        {
+            context.Enrollments.Add(enrollment);
+            var result = context.SaveChanges();
+            return result > 0;
+        }
+        public async void AddEnrollment(EnrollmentViewModel enrollmentViewModel)
+        {
+            var enrollment = new Enrollment
+            {
+                StudentId = enrollmentViewModel.StudentId,
+                CourseId = enrollmentViewModel.CourseId,
+                Date = DateTime.Now
+            };
+
+            context.Enrollments.Add(enrollment);
+            context.SaveChanges();
+        }
+
         public List<CourseViewModel> GetAll()
         {
             var courses = context.Courses.ToList();
