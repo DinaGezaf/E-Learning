@@ -17,7 +17,7 @@ namespace E_Learning.Repository
         public List<CourseViewModel> GetAll()
         {
             var courses = context.Courses.ToList();
-            List<CourseViewModel> CrsVM= new List<CourseViewModel>();
+            List<CourseViewModel> CrsVM = new List<CourseViewModel>();
             foreach (var course in courses)
             {
                 CrsVM.Add(new CourseViewModel
@@ -25,7 +25,7 @@ namespace E_Learning.Repository
                     Id = course.Id,
                     Name = course.Name,
                     Description = course.Description,
-                    Price=course.Price,
+                    Price = course.Price,
                     Category = course.Category,
                     Rating = course.Rating,
                     certificate_Date = course.certificate_Date,
@@ -33,16 +33,16 @@ namespace E_Learning.Repository
                     Duration = course.Duration,
                     Image = course.Image,
                     Lessons = course.Lessons,
-                    Feedbacks=course.Feedbacks
+                    Feedbacks = course.Feedbacks
                 });
             }
             return CrsVM;
         }
         public CourseViewModel GetById([FromRoute] int id)
         {
-            var course = context.Courses.FirstOrDefault(c=>c.Id== id);
+            var course = context.Courses.FirstOrDefault(c => c.Id == id);
             var Lessons = context.Lessons.Where(l => l.CourseId == id).ToList();
-            var Feedbacks = context.Feedbacks.Where(f=>f.CourseId == id).ToList();
+            var Feedbacks = context.Feedbacks.Where(f => f.CourseId == id).ToList();
 
             CourseViewModel courseViewModel = new CourseViewModel();
 
@@ -60,6 +60,6 @@ namespace E_Learning.Repository
 
             return courseViewModel;
         }
-        
+
     }
 }

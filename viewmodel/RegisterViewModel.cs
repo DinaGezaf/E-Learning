@@ -15,6 +15,9 @@ namespace E_Learning.viewmodel
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        public DateTime birthDate { get; set; }
+
+
 
     }
 }

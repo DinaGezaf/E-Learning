@@ -7,6 +7,7 @@ namespace E_Learning_Platform.Models
         public int Id { get; set; }
         public string Method { get; set; }
         public DateTime Date { get; set; }
+        public string? SessionId { get; set; }
         public int Amount { get; set; }
         public bool Status { get; set; }
         public int StudentId { get; set; }

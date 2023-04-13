@@ -56,10 +56,10 @@
                     <a asp-action="Index" asp-controller="About" class="nav-item nav-link">About</a>
                 
                     <a asp-action="Index" asp-controller="Contact" class="nav-item nav-link">Contact</a>
-                @if (User.IsInRole("Admin"))
-                {
+                
+                
                     <a asp-action="New" asp-controller="Role" class="nav-item nav-link">Role</a>
-                }
+                
                 <a asp-action="Index" asp-controller="Courses" class="nav-item nav-link">Courses</a>
                 
                 @if (User.Identity.IsAuthenticated == false)

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Learning_Platform.Models
 {
-    public class E_LearningContext:IdentityDbContext<App_user>
+    public class E_LearningContext : IdentityDbContext<App_user>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -12,7 +12,6 @@ namespace E_Learning_Platform.Models
             base.OnConfiguring(optionsBuilder);
         }
 
-       // public DbSet<App_User> Users { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }

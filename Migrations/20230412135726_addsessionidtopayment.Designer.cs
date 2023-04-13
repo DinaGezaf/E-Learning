@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Learning.Migrations
 {
     [DbContext(typeof(E_LearningContext))]
-    [Migration("20230410005650_eight")]
-    partial class eight
+    [Migration("20230412135726_addsessionidtopayment")]
+    partial class addsessionidtopayment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -127,7 +127,7 @@ namespace E_Learning.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EnrollmentId")
+                    b.Property<int>("EnrollmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -138,7 +138,7 @@ namespace E_Learning.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PaymentId")
+                    b.Property<int>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<float>("Price")
@@ -279,6 +279,9 @@ namespace E_Learning.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SessionId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
@@ -360,6 +363,7 @@ namespace E_Learning.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("User_id")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -525,11 +529,15 @@ namespace E_Learning.Migrations
                 {
                     b.HasOne("E_Learning_Platform.Models.Enrollment", null)
                         .WithMany("Courses")
-                        .HasForeignKey("EnrollmentId");
+                        .HasForeignKey("EnrollmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("E_Learning_Platform.Models.Payment", null)
                         .WithMany("Courses")
-                        .HasForeignKey("PaymentId");
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("E_Learning_Platform.Models.Enrollment", b =>
@@ -546,7 +554,7 @@ namespace E_Learning.Migrations
             modelBuilder.Entity("E_Learning_Platform.Models.Feedback", b =>
                 {
                     b.HasOne("E_Learning_Platform.Models.Course", "Course")
-                        .WithMany()
+                        .WithMany("Feedbacks")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -619,7 +627,9 @@ namespace E_Learning.Migrations
                 {
                     b.HasOne("E_Learning.Models.App_user", "App_User")
                         .WithMany()
-                        .HasForeignKey("User_id");
+                        .HasForeignKey("User_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("App_User");
                 });
@@ -677,6 +687,8 @@ namespace E_Learning.Migrations
 
             modelBuilder.Entity("E_Learning_Platform.Models.Course", b =>
                 {
+                    b.Navigation("Feedbacks");
+
                     b.Navigation("Lessons");
                 });
 

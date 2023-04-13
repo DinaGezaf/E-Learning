@@ -1,11 +1,10 @@
 ﻿using E_Learning.Interface;
-using E_Learning.Migrations;
 using E_Learning.Repository;
 using E_Learning.viewmodel;
 using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_Learning.Controllers.Contact
+namespace E_Learning.Controllers
 {
     public class CoursesController : Controller
     {
@@ -42,7 +41,7 @@ namespace E_Learning.Controllers.Contact
             feedback.StudentId = model.StudentId;
             feedback.Comment = model.Comment;
             feedback.Rating = model.Rating;
-            feedback.Date= DateTime.Now;
+            feedback.Date = DateTime.Now;
 
             feedbackRepository.Insert(feedback);
             return RedirectToAction("CourseDetails", "Courses", feedback);

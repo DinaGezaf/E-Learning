@@ -1,4 +1,5 @@
 ﻿using E_Learning.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Learning_Platform.Models
@@ -8,7 +9,9 @@ namespace E_Learning_Platform.Models
         public int Id { get; set; }
         
         public string? Bio { get; set; }
+        
         public DateTime DateOfBirth { get; set; }
+        
         public string? Profile_Picture { get; set; }
         public int EnrollmentHistory { get; set; }
         public int PaymentHistory { get; set; }

@@ -1,9 +1,9 @@
-﻿using E_Learning_Platform.Models;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_Learning.Controllers.Login
+namespace E_Learning.Controllers
 {
-    public class LoginController : Controller
+    public class AboutController : Controller
     {
         public IActionResult Index()
         {

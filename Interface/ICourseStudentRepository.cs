@@ -8,5 +8,6 @@ namespace E_Learning.Interface
         public void Delete(int courseId,int studentId);
         public void Insert(CourseStudent crsStudent);
         public List<StudentCourseViewModel> GetByStudentId(int studentId);
+        public void UpdateIsPaid(int stdId);
     }
 }

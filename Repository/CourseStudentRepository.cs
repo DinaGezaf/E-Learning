@@ -45,6 +45,16 @@ namespace E_Learning.Repository
         context.CourseStudent.Add(crsStudent);
         context.SaveChanges();
     }
+        public void UpdateIsPaid(int stdId)
+        {
+            List<CourseStudent> courseStudents = context.CourseStudent.Where(cs => cs.StudentId == stdId).ToList();
+            foreach (var item in courseStudents)
+            {
+                item.IsPaid = true;
+                context.CourseStudent.Update(item);
+            }
+            context.SaveChanges();
+        }
 
-   }
+    }
 }

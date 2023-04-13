@@ -3,7 +3,7 @@ using E_Learning_Platform.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_Learning.Controllers.Home
+namespace E_Learning.Controllers
 {
     public class HomeController : Controller
     {
