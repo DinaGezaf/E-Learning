@@ -18,31 +18,22 @@ namespace E_Learning.Repository
             return context.Students.FirstOrDefault(s => s.User_id == id);
         }
 
-         StudentProfileViewModel IStudentRepository.GetCrsByStudentId(string userId)
+        StudentProfileViewModel IStudentRepository.GetCrsByStudentId(string userId)
         {
             var std = context.Students.FirstOrDefault(s => s.User_id == userId);
             var Enrollments = context.Enrollments.Include(e => e.Course).Where(cs => cs.StudentId == std.Id).OrderByDescending(e => e.Date).ToList();
-          
+
 
             StudentProfileViewModel studentVM = new StudentProfileViewModel();
 
             studentVM.Profile_picture = std?.Profile_Picture;
             studentVM.Bio = std.Bio;
             studentVM.DateOfBirth = std.DateOfBirth;
-<<<<<<< HEAD
             studentVM.Id = std.Id;
 
             studentVM.Enrolled_Courses = Enrollments.Select(e => e.Course).ToList();
             studentVM.CrsEnrolled = studentVM.Enrolled_Courses.Count();
 
-=======
-            
-            foreach(var item in Enrollments)
-            {
-                studentVM.Enrolled_Courses = context.Courses.Where(cs => cs.EnrollmentId == item.Id).ToList();
-                studentVM.CrsEnrolled = studentVM.Enrolled_Courses.Count();
-            }
->>>>>>> parent of 328a1d9 (Edit Student Profile Form)
             return studentVM;
         }
         public List<UserStudentViewModel> GetAllIncludeUserData()
@@ -61,6 +52,32 @@ namespace E_Learning.Repository
             return userStudents;
 
 
+        }
+
+        public void UpdateStudent(int id, Student student)
+        {
+
+            var existingStudent = context.Students.Include(s => s.App_User).FirstOrDefault(s => s.Id == id);
+
+            if (existingStudent != null)
+            {
+                existingStudent.Id = student.Id;
+                existingStudent.Bio = student.Bio;
+                existingStudent.Profile_Picture = student.Profile_Picture;
+
+                context.SaveChanges();
+            }
+        }
+        public StudentProfileViewModel GetById(int id)
+        {
+            Student studentmodel = context.Students.Include(s=>s.App_User).FirstOrDefault(s => s.Id == id);
+            var StudentVM = new StudentProfileViewModel();
+
+            StudentVM.Id = studentmodel.Id;
+            StudentVM.Bio= studentmodel.Bio ;
+            StudentVM.Profile_picture= studentmodel.Profile_Picture;
+
+            return StudentVM;
         }
     }
 }

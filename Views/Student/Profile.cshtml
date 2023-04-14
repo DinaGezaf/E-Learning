@@ -4,17 +4,16 @@
 }
 
 <div class="container">
-    <div >
+    <div>
         <div>
             <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
                 <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                     <img src="~/Images/Profile/@Model.Profile_picture"
                          alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                          style="width: 150px; z-index: 1">
-                    @*<button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                            style="z-index: 1;">
+                    <a href="#" onclick="GetData(@Model.Id)" class="btn btn-outline-dark" style="z-index: 1;">
                         Edit profile
-                    </button>*@
+                    </a>
                 </div>
                 <div class="ms-3" style="margin-top: 130px;">
                     <h5 class="text-light">@User?.Identity?.Name</h5>
@@ -31,31 +30,21 @@
                         <p class="small text-muted mb-0">BirthDate</p>
                     </div>
                 </div>
-            
-            <div class="card-body p-4 text-black">
-                <div class="mb-5">
-                    <p class="lead fw-normal mb-1">About</p>
-                    <div class="p-4" style="background-color: #f8f9fa;">
-                        <p class="font-italic mb-1">@Model.Bio</p>
+
+                <div class="card-body p-4 text-black">
+                    <div class="mb-5">
+                        <p class="lead fw-normal mb-1">About</p>
+                        <div class="p-4" style="background-color: #f8f9fa;">
+                            <p class="font-italic mb-1">@Model.Bio</p>
+                        </div>
                     </div>
-                </div>
-<<<<<<< HEAD
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <p class="lead fw-normal mb-0">Recent Courses</p>
                     </div>
-                    
-                        <div class="row">
+
+                    <div class="row">
                         @foreach (var item in Model.Enrolled_Courses)
                         {
-=======
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="lead fw-normal mb-0">Recent Courses</p>
-                </div>
-                @foreach (var item in Model.Enrolled_Courses)
-                        {
-                          <div class="row">
-                        
->>>>>>> parent of 328a1d9 (Edit Student Profile Form)
                             <div class="col-md-6 col-lg-4 my-1 text-center  pt-4">
                                 <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded mx-2 bg-light">
                                     <img src="~/Images/Course/@item.Image" class="card-img-top" alt="..." style="width: 21rem;height:20rem;">
@@ -66,53 +55,43 @@
                                     </div>
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            }
-                        </div>
-                   
-        </div>
-    </div>
-=======
-                        
-                          </div>
-                }
+                        }
+                    </div>
+
+                </div>
             </div>
->>>>>>> parent of 328a1d9 (Edit Student Profile Form)
         </div>
     </div>
 </div>
 
 
-<<<<<<< HEAD
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="Div1"></div>
-                </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="Div1"></div>
             </div>
+
         </div>
     </div>
+</div>
 
 
-    @section Scripts
-        {
-        <script src="/lib/jquery/dist/jquery.min.js"></script>
-        <script>
-            function GetData(StdId) {
-                event.preventDefault();
-                $.ajax({
-                    url: "@Url.Action("EditPartial","Student")",
-                    data: { "Id": StdId },
-                    success: function (result) {
-                        console.log(result);
-                        $("#Div1").html(result);
-                        $("#exampleModal").modal('show');
-                    }
-                });
-            }
-        </script>
+@section Scripts
+    {
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        function GetData(StdId) {
+            event.preventDefault();
+            $.ajax({
+                url: "@Url.Action("EditPartial","Student")",
+                data: { "Id": StdId },
+                success: function (result) {
+                    console.log(result);
+                    $("#Div1").html(result);
+                    $("#exampleModal").modal('show');
+                }
+            });
+        }
+    </script>
     }
-=======
->>>>>>> parent of 328a1d9 (Edit Student Profile Form)

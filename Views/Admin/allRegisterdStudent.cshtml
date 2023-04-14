@@ -3,7 +3,7 @@
     ViewData["Title"] = "allRegisterdStudent";
 }
 
-<h1>Students</h1>
+<h1 style="text-align:center; color:#06BBCC;" >Students</h1>
 
 <div class="stud" style="dispaly:flex; align-item:center; justify-content:center">
     <div>
@@ -22,7 +22,7 @@
         {
             <tr>
                 <td>
-                    @student.Profile_Picture
+                            <img src="~/Images/Profile/@student.Profile_Picture" width="100px" height="100px"/>
                 </td>
                 <td>
                     @student.UserName

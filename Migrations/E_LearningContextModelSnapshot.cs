@@ -132,7 +132,7 @@ namespace E_Learning.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<float>("Price")
@@ -462,9 +462,7 @@ namespace E_Learning.Migrations
                 {
                     b.HasOne("E_Learning_Platform.Models.Payment", null)
                         .WithMany("Courses")
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaymentId");
                 });
 
             modelBuilder.Entity("E_Learning_Platform.Models.Enrollment", b =>

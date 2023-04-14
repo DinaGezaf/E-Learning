@@ -5,6 +5,7 @@ namespace E_Learning.viewmodel
 {
     public class StudentProfileViewModel
     {
+        public int Id { get; set; }
         public string Bio { get; set; }
         public string Profile_picture { get; set; }
         public DateTime DateOfBirth { get; set; }
